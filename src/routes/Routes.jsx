@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import AuthLayout from "../layout/AuthLayout";
 import PrivateRoute from "../context/PrivateRoute";
 import Details from "../pages/Details";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             { path: "/auth/login", Component: Login },
             { path: "/auth/register", Component: Register },
         ]
+    },
+    {
+        path: "/*",
+        Component: Error,
     }
 ]);
 
