@@ -8,18 +8,30 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayout from "../layout/AuthLayout";
 import PrivateRoute from "../context/PrivateRoute";
+import Details from "../pages/Details";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: MainLayout,
         children: [
-            { path: "/", Component: Home },
+            {
+                path: "/",
+                Component: Home,
+                loader: () => fetch('http://localhost:3000/roommate')
+            },
             {
                 path: "/add-listing",
-                element:<PrivateRoute>
+                element: (<PrivateRoute>
                     <AddListing></AddListing>
-                </PrivateRoute>
+                </PrivateRoute>)
+            },
+            {
+                path: '/details/:id',
+                element:(<PrivateRoute>
+                    <Details></Details>
+                </PrivateRoute>),
+                loader:({params})=>fetch(`http://localhost:3000/roommate/${params.id}`)
             },
             { path: "/browse", Component: BrowseListings },
             { path: "/my-listings", Component: MyListings },
