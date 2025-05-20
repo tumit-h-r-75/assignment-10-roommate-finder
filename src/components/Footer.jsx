@@ -7,7 +7,7 @@ const Footer = () => {
                 {/* Brand Info */}
                 <div className="flex flex-col items-center gap-5">
                     <Link to="/" className="text-3xl font-extrabold text-primary">
-                        RoommateFinder
+                        <h1>Roommate<span className="text-secondary">Finder</span></h1>
                     </Link>
                     <p className="text-sm text-center mt-3">
                         Find your ideal roommate easily. Search, connect, and live better together.
@@ -17,7 +17,7 @@ const Footer = () => {
                 {/* Navigation Links */}
                 <div className="flex flex-col items-center gap-5">
                     <h3 className="footer-title uppercase font-semibold mb-2">Pages</h3>
-                    <ul className="space-y-1">
+                    <ul className="space-y-1 text-center">
                         <li><Link className="link link-hover" to="/">Home</Link></li>
                         <li><Link className="link link-hover" to="/add-listing">Add Listing</Link></li>
                         <li><Link className="link link-hover" to="/browse">Browse</Link></li>
@@ -28,7 +28,7 @@ const Footer = () => {
                 {/* Support */}
                 <div className="flex flex-col items-center gap-5">
                     <h3 className="footer-title uppercase font-semibold mb-2">Support</h3>
-                    <ul className="space-y-1">
+                    <ul className="space-y-1 text-center">
                         <li><a className="link link-hover">Privacy Policy</a></li>
                         <li><a className="link link-hover">Terms of Service</a></li>
                         <li><a className="link link-hover">Help Center</a></li>
