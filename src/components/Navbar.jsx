@@ -40,17 +40,22 @@ const Navbar = () => {
 
     return (
         <div className="bg-base-100 shadow-sm px-6 py-3 sticky top-0 z-10">
-            <div className="flex items-center justify-between">
-                <div>
-                    <Link to="/" className="text-2xl font-bold text-primary transition duration-300 flex items-center justify-center -space-x-5">
-                        <img src={navLogo} className="w-30 h-auto" alt="" />
+            <div className="flex items-center justify-between flex-wrap lg:flex-nowrap">
+                {/* Logo */}
+                <div className="flex-shrink-0">
+                    <Link to="/" className="text-2xl font-bold text-primary flex items-center -space-x-5">
+                        <img src={navLogo} className="w-30 h-auto" alt="logo" />
                         <h1>Roommate<span className="text-secondary">Finder</span></h1>
                     </Link>
                 </div>
 
-                {/* Desktop Menu */}
-                <div className="hidden lg:flex items-center gap-8">
+                {/* Nav Links (centered) */}
+                <div className="hidden lg:flex flex-1 justify-center">
                     <ul className="menu menu-horizontal gap-4 text-base">{navLinks}</ul>
+                </div>
+
+                {/* Auth Buttons */}
+                <div className="hidden lg:flex items-center gap-4">
                     {user ? (
                         <div className="flex items-center gap-3">
                             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
@@ -69,8 +74,8 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className="lg:hidden dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                <div className="lg:hidden dropdown dropdown-end ml-auto">
+                    <label tabIndex={0} className="btn btn-ghost">
                         <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -81,7 +86,7 @@ const Navbar = () => {
                             {user ? (
                                 <>
                                     <div className="flex items-center gap-2 px-2">
-                                        <img src={user.photoURL} alt="" className="w-8 h-8 rounded-full" />
+                                        <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
                                         <span className="font-semibold">{user.displayName}</span>
                                     </div>
                                     <button onClick={handleLogout} className="btn btn-outline hover:btn-primary w-full mt-2">

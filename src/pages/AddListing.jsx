@@ -41,7 +41,7 @@ const AddListing = () => {
                         icon: "success",
                         confirmButtonColor: "#D2B48C"
                     });
-                    // form.reset();
+                    form.reset();
                 }
             });
 

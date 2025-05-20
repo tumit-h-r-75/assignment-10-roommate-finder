@@ -29,12 +29,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element:(<PrivateRoute>
+                element: (<PrivateRoute>
                     <Details></Details>
                 </PrivateRoute>),
-                loader:({params})=>fetch(`http://localhost:3000/roommate/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/roommate/${params.id}`)
             },
-            { path: "/browse", Component: BrowseListings },
+            {
+                path: "/browse",
+                Component: BrowseListings,
+                loader:()=>fetch('http://localhost:3000/roommate')
+            },
             { path: "/my-listings", Component: MyListings },
         ],
     },

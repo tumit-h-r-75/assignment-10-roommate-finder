@@ -1,19 +1,23 @@
 import React from 'react';
 import Slider from '../components/Slider';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router-dom'; 
 
 const Home = () => {
 
-    const initialRoommate = useLoaderData();
-    console.log(initialRoommate);
+    const roommate = useLoaderData();
 
+    const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
+
+    const initialRoommate = availableRoommates.slice(0, 6);
+ 
 
     return (
         <div>
             <section>
-                <Slider></Slider>
+                <Slider />
             </section>
-             <section className="max-w-7xl mx-auto my-10 px-4">
+            
+            <section className="max-w-7xl mx-auto my-10 px-4">
                 <h2 className="text-3xl font-bold mb-6 text-center text-primary">Featured Roommates</h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -30,11 +34,15 @@ const Home = () => {
                                 <p><span className="font-medium">Budget:</span> ${roommate.rent}</p>
                                 <p><span className="font-medium">Lifestyle:</span> {roommate.lifestyle}</p>
                             </div>
-                            <Link to={`/details/${roommate._id}`} className="btn btn-primary mt-4">
-                                See More
-                            </Link>
                         </div>
                     ))}
+                </div>
+
+                {/* নিচের See More Button */}
+                <div className="text-center mt-8">
+                    <Link to="/browse" className="btn btn-outline btn-primary">
+                        See More Roommates
+                    </Link>
                 </div>
             </section>
         </div>
