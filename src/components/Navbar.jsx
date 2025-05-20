@@ -43,25 +43,25 @@ const Navbar = () => {
                     <Link to="/login" className="btn btn-outline btn-sm rounded-full px-4">Login</Link>
                     <Link to="/register" className="btn btn-primary btn-sm rounded-full px-4">Sign Up</Link>
                 </div>
-            </div>
-            
 
-            {/* Mobile Menu */}
-            <div className="lg:hidden dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </label>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    {navLinks}
-                    <div className="mt-2">
-                        <Link to="/login" className="btn btn-outline btn-sm w-full mb-1">Login</Link>
-                        <Link to="/register" className="btn btn-primary btn-sm w-full">Sign Up</Link>
-                    </div>
-                </ul>
-            </div>
 
+
+                {/* Mobile Menu */}
+                <div className="lg:hidden dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        {navLinks}
+                        <div className="mt-2">
+                            <Link to="/login" className="btn btn-outline btn-sm w-full mb-1">Login</Link>
+                            <Link to="/register" className="btn btn-primary btn-sm w-full">Sign Up</Link>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };
