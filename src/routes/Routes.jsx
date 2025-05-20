@@ -7,6 +7,7 @@ import MyListings from "../pages/MyListings";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayout from "../layout/AuthLayout";
+import PrivateRoute from "../context/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,12 @@ const router = createBrowserRouter([
         Component: MainLayout,
         children: [
             { path: "/", Component: Home },
-            { path: "/add-listing", Component: AddListing },
+            {
+                path: "/add-listing",
+                element:<PrivateRoute>
+                    <AddListing></AddListing>
+                </PrivateRoute>
+            },
             { path: "/browse", Component: BrowseListings },
             { path: "/my-listings", Component: MyListings },
         ],
