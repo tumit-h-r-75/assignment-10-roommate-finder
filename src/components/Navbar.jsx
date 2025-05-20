@@ -40,8 +40,8 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal gap-4 text-base">{navLinks}</ul>
                 </div>
                 <div className="hidden lg:flex items-center gap-2">
-                    <Link to="/login" className="btn btn-outline btn-sm rounded-full px-4">Login</Link>
-                    <Link to="/register" className="btn btn-primary btn-sm rounded-full px-4">Sign Up</Link>
+                    <Link to="/auth/login" className="btn btn-outline btn-sm rounded-full px-4">Login</Link>
+                    <Link to="/auth/register" className="btn btn-primary btn-sm rounded-full px-4">Sign Up</Link>
                 </div>
 
 
@@ -56,8 +56,8 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navLinks}
                         <div className="mt-2">
-                            <Link to="/login" className="btn btn-outline btn-sm w-full mb-1">Login</Link>
-                            <Link to="/register" className="btn btn-primary btn-sm w-full">Sign Up</Link>
+                            <Link to="/auth/login" className="btn btn-outline btn-sm w-full mb-1">Login</Link>
+                            <Link to="/auth/register" className="btn btn-primary btn-sm w-full">Sign Up</Link>
                         </div>
                     </ul>
                 </div>
