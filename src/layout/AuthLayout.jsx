@@ -8,7 +8,7 @@ const AuthLayout = () => {
     return (
         <div>
                         <ToastContainer />
-            <header>
+            <header className=' sticky top-0 z-10'>
                 <Navbar></Navbar>
             </header>
             <main className='max-w-7xl mx-auto min-h-screen'>
