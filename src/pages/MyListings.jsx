@@ -91,7 +91,7 @@ const MyListings = () => {
                                     <td>{post.location}</td>
                                     <td>{post.rent} BDT</td>
                                     <td className="flex gap-2">
-                                        <Link to={`/update/${post._id}`}>
+                                        <Link to={`/updateList/${post._id}`}>
                                             <button className="btn btn-sm btn-outline btn-primary">Update</button>
                                         </Link>
                                         <button

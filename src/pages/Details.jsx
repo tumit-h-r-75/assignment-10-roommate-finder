@@ -63,7 +63,7 @@ const Details = () => {
                     <p><span className="font-medium">Location:</span> {roommate.location}</p>
                     <p><span className="font-medium">Budget:</span> ${roommate.rent}</p>
                     <p><span className="font-medium">Lifestyle:</span> {roommate.lifestyle}</p>
-                    <p><span className="font-medium">Interests:</span> {roommate.interests}</p>
+                    <p><span className="font-medium">Description:</span> {roommate.description}</p>
                     <p><span className="font-medium">Availability:</span> {roommate.availability}</p>
                     <p><span className="font-medium">Posted by:</span> {roommate.userName}</p>
 

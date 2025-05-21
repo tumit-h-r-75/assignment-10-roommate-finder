@@ -11,7 +11,7 @@ const MainLayout = () => {
             <header className=' sticky top-0 z-10'>
                 <Navbar></Navbar>
             </header>
-            <main className='max-w-7xl mx-auto min-h-screen mt-5'>
+            <main className='max-w-7xl mx-auto min-h-fit mt-5'>
                 <Outlet></Outlet>
             </main>
             <footer>
