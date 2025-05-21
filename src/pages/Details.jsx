@@ -49,40 +49,54 @@ const Details = () => {
         }
     };
 
+    const availabilityBadge = roommate.availability === "Available"
+        ? <span className="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">Available</span>
+        : <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded-full">Not Available</span>;
+
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow mt-10">
-            <h2 className="text-xl font-bold text-center mb-6">{likeCount} people interested in</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <img
-                    src={roommate.image}
-                    alt={roommate.name}
-                    className="w-full h-80 object-cover rounded-xl"
-                />
-                <div>
-                    <h2 className="text-3xl font-bold text-primary mb-2">{roommate.userName}</h2>
-                    <p><span className="font-medium">Location:</span> {roommate.location}</p>
-                    <p><span className="font-medium">Budget:</span> ${roommate.rent}</p>
-                    <p><span className="font-medium">Lifestyle:</span> {roommate.lifestyle}</p>
-                    <p><span className="font-medium">Description:</span> {roommate.description}</p>
-                    <p><span className="font-medium">Availability:</span> {roommate.availability}</p>
-                    <p><span className="font-medium">Posted by:</span> {roommate.userName}</p>
+        <div className="max-w-5xl mx-auto px-4 py-10">
+            <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+                <h2 className="text-xl font-bold text-center py-5 bg-primary text-white">{likeCount} People Interested</h2>
 
-                    <div className="mt-4">
-                        <button
-                            onClick={handleLike}
-                            disabled={liked}
-                            className={`btn ${liked ? 'btn-success' : 'btn-outline'} mr-4`}
-                        >
-                            ❤️ {liked ? 'Liked' : 'Like'}
-                        </button>
-                        <span className="font-medium">Total Likes:</span> {likeCount}
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                    <img
+                        src={roommate.image}
+                        alt={roommate.name}
+                        className="w-full h-full object-cover max-h-[450px]"
+                    />
 
-                    {showContact && (
-                        <div className="mt-4">
-                            <p className="text-lg font-semibold text-green-600">📞 Contact: {roommate.contact}</p>
+                    <div className="p-6 space-y-3 flex flex-col justify-between">
+                        <div>
+                            <h2 className="text-2xl font-bold text-primary mb-1">{roommate.userName}</h2>
+                            <p className="text-gray-700"><span className="font-semibold">Location:</span> {roommate.location}</p>
+                            <p className="text-gray-700"><span className="font-semibold">Budget:</span> ${roommate.rent}</p>
+                            <p className="text-gray-700"><span className="font-semibold">Lifestyle:</span> {roommate.lifestyle}</p>
+                            <p className="text-gray-700"><span className="font-semibold">Description:</span> {roommate.description}</p>
+                            <p className="text-gray-700 flex items-center gap-2">
+                                <span className="font-semibold">Availability:</span> {availabilityBadge}
+                            </p>
+                            <p className="text-gray-700"><span className="font-semibold">Posted By:</span> {roommate.userName}</p>
                         </div>
-                    )}
+
+                        <div className="mt-4 flex items-center gap-4 flex-wrap">
+                            <button
+                                onClick={handleLike}
+                                disabled={liked}
+                                className={`btn ${liked ? 'btn-success' : 'btn-outline'} px-6`}
+                            >
+                                ❤️ {liked ? 'Liked' : 'Like'}
+                            </button>
+                            <p className="font-medium text-gray-700">Total Likes: {likeCount}</p>
+                        </div>
+
+                        {showContact && (
+                            <div className="mt-3">
+                                <p className="text-lg font-semibold text-green-600 bg-green-50 px-4 py-2 rounded-xl inline-block">
+                                    📞 Contact: {roommate.contact}
+                                </p>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

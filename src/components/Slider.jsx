@@ -9,8 +9,8 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 // Import images
 import firstImg from "../assets/images-1.webp";
-import secoundImg from "../assets/images-2.jpg";
-import thirdImg from "../assets/images-3.webp";
+import secoundImg from "../assets/slider-2.jpg";
+import thirdImg from "../assets/slider-4.avif";
 
 export default function Slider() {
   return (

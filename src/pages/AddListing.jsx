@@ -39,7 +39,7 @@ const AddListing = () => {
                     Swal.fire({
                         title: "roommate added successfully!",
                         icon: "success",
-                        confirmButtonColor: "#D2B48C"
+                        confirmButtonColor: "#176AE5"
                     });
                     form.reset();
                 }
