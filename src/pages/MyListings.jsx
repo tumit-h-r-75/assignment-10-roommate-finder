@@ -36,7 +36,7 @@ const MyListings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://roommate-finder-server.vercel.app/roommate/${id}`, {  
+                fetch(`https://roommate-finder-server.vercel.app/roommate/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -47,7 +47,7 @@ const MyListings = () => {
                                 text: "Your listing has been deleted.",
                                 icon: "success"
                             });
-                           
+
                             const remainingListings = myListings.filter(listing => listing._id !== id);
                             setMyListings(remainingListings);
                         }
@@ -68,38 +68,44 @@ const MyListings = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-6">
-            <h1 className="text-2xl font-semibold mb-4">My Listings</h1>
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead>
-                        <tr className="bg-gray-100 text-sm">
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Location</th>
-                            <th>Rent</th>
-                            <th>Actions</th>
+            <h1 className="text-2xl font-bold mb-6 text-center">My Listings</h1>
+            <div className="overflow-x-auto rounded-lg border shadow">
+                <table className="min-w-full table-auto text-sm text-left whitespace-nowrap">
+                    <thead className="bg-base-200 text-base-content">
+                        <tr>
+                            <th className="px-4 py-3">Image</th>
+                            <th className="px-4 py-3">Title</th>
+                            <th className="px-4 py-3">Location</th>
+                            <th className="px-4 py-3">Rent</th>
+                            <th className="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y">
                         {myListings.length > 0 ? (
                             myListings.map(post => (
-                                <tr key={post._id}>
-                                    <td>
-                                        <img src={post.image} alt="roommate" className="w-14 h-14 rounded object-cover" />
+                                <tr key={post._id} className="hover:bg-base-100 transition">
+                                    <td className="px-4 py-3">
+                                        <img
+                                            src={post.image}
+                                            alt="roommate"
+                                            className="w-16 h-16 object-cover rounded-lg border"
+                                        />
                                     </td>
-                                    <td>{post.title}</td>
-                                    <td>{post.location}</td>
-                                    <td>{post.rent} BDT</td>
-                                    <td className="flex gap-2">
-                                        <Link to={`/updateList/${post._id}`}>
-                                            <button className="btn btn-sm btn-outline btn-primary">Update</button>
-                                        </Link>
-                                        <button
-                                            onClick={() => handleDelete(post._id)}
-                                            className="btn btn-sm btn-outline btn-error"
-                                        >
-                                            Delete
-                                        </button>
+                                    <td className="px-4 py-3 max-w-[150px] truncate">{post.title}</td>
+                                    <td className="px-4 py-3 max-w-[120px] truncate">{post.location}</td>
+                                    <td className="px-4 py-3 font-medium">{post.rent} BDT</td>
+                                    <td className="px-4 py-3">
+                                        <div className="flex flex-wrap gap-2">
+                                            <Link to={`/updateList/${post._id}`}>
+                                                <button className="btn btn-sm btn-outline btn-primary">Update</button>
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDelete(post._id)}
+                                                className="btn btn-sm btn-outline btn-error"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))
