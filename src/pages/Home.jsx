@@ -1,22 +1,24 @@
-
+import React from 'react';
 import Slider from '../components/Slider';
-import { Link, useLoaderData } from 'react-router-dom'; 
+import { Link, useLoaderData } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const Home = () => {
-
     const roommate = useLoaderData();
 
-    const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
+    if (!roommate || roommate.length === 0) {
+        return <Loader></Loader>;
+    }
 
+    const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
     const initialRoommate = availableRoommates.slice(0, 6);
- 
 
     return (
         <div>
             <section>
                 <Slider />
             </section>
-            
+
             <section className="max-w-7xl mx-auto my-10 px-4">
                 <h2 className="text-3xl font-bold mb-6 text-center text-primary">Featured Roommates</h2>
 
@@ -38,7 +40,6 @@ const Home = () => {
                     ))}
                 </div>
 
-                {/* নিচের See More Button */}
                 <div className="text-center mt-8">
                     <Link to="/browse" className="btn btn-outline btn-primary">
                         See More Roommates

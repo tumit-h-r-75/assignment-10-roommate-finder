@@ -10,6 +10,7 @@ import AuthLayout from "../layout/AuthLayout";
 import PrivateRoute from "../context/PrivateRoute";
 import Details from "../pages/Details";
 import Error from "../pages/Error";
+import Loader from "../components/Loader";
 
 const router = createBrowserRouter([
     {
@@ -44,9 +45,7 @@ const router = createBrowserRouter([
                 element: (<PrivateRoute>
                     <MyListings></MyListings>
                 </PrivateRoute>),
-                loader: ({ user }) => fetch(`https://roommate-finder-server.vercel.app/roommate/user/${user?.email}`)
-
-
+                // loader: ({ user }) => fetch(`https://roommate-finder-server.vercel.app/roommate/user/${user?.email}`),
             },
         ],
     },

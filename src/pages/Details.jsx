@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const Details = () => {
     const roommate = useLoaderData();
@@ -8,18 +8,50 @@ const Details = () => {
     const [likeCount, setLikeCount] = useState(roommate.likes || 0);
     const [showContact, setShowContact] = useState(false);
 
+    const storageKey = `liked_${roommate._id}`;
+
+    useEffect(() => {
+        const alreadyLiked = localStorage.getItem(storageKey);
+        if (alreadyLiked) {
+            setLiked(true);
+            setShowContact(true);
+        }
+    }, [storageKey]);
+
     const handleLike = () => {
         if (!liked) {
-            setLiked(true);
-            setLikeCount(prev => prev + 1);
-            setShowContact(true);
-            toast.success('You liked this profile!');
-            // Optional: Send updated like count to server using fetch/axios (PUT/PATCH)
+            const updatedLikes = likeCount + 1;
+
+            fetch(`https://roommate-finder-server.vercel.app/roommate/${roommate._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ isLike: updatedLikes }),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount > 0) {
+                        localStorage.setItem(storageKey, 'true');
+                        setLiked(true);
+                        setLikeCount(updatedLikes);
+                        setShowContact(true);
+
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "You liked successfully!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
         }
     };
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow mt-10">
+            <h2 className="text-xl font-bold text-center mb-6">{likeCount} people interested in</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <img
                     src={roommate.image}
@@ -38,6 +70,7 @@ const Details = () => {
                     <div className="mt-4">
                         <button
                             onClick={handleLike}
+                            disabled={liked}
                             className={`btn ${liked ? 'btn-success' : 'btn-outline'} mr-4`}
                         >
                             ❤️ {liked ? 'Liked' : 'Like'}

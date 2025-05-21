@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from './AuthContext';
 import { Navigate, useLocation } from 'react-router';
+import Loader from '../components/Loader';
 
 const PrivateRoute = ({ children }) => {
 
@@ -13,8 +14,8 @@ const PrivateRoute = ({ children }) => {
 
 
     if (loading) {
-        return <div className="flex justify-center items-center h-screen">
-            <span className="loading loading-dots loading-xl text-primary"></span>
+        return <div>
+            <Loader></Loader>
         </div>
     }
 

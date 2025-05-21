@@ -1,8 +1,13 @@
 import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const BrowseListings = () => {
     const allRoommate = useLoaderData();
+
+    if (!allRoommate || allRoommate.length === 0) {
+        return <Loader></Loader>;
+    }
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-6">
