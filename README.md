@@ -1,12 +1,57 @@
-# React + Vite
+# 🏠 Roommate Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A smart and modern platform to help users **find compatible roommates** based on preferences like location, budget, lifestyle, and interests.
 
-Currently, two official plugins are available:
+🔗 **Live Site:** [https://roommate-finder-application.web.app]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔒 **Firebase Authentication** with Email/Password & Google Login
+- 📝 **Add, Update, Delete Listings** — only accessible to authenticated users
+- ❤️ **Like Button with Contact Reveal** — see phone number after liking a listing
+- 🔍 **Browse Listings Page** with filtering and pagination (See More)
+- 🧑‍💼 **My Listings Dashboard** for managing your posted rooms
+- 🌙 **Dark/Light Theme Toggle** on Home Page
+- 📊 **Like Count** updated in real-time and displayed on details page
+- 📱 **Responsive Design** — optimized for mobile, tablet, and desktop
+- 🚫 **404 Page** and loading spinners for better UX
+- ✅ Password rules enforced: uppercase, lowercase, min 6 characters
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**
+- React 19 with Vite
+- TailwindCSS & DaisyUI
+- React Router DOM 7
+- Axios & SweetAlert2
+- Lottie React, React Tooltip, React Toastify, Typewriter, Awesome Reveal
+
+**Authentication & Hosting:**
+- Firebase Authentication
+- Firebase Hosting
+
+**Backend (server repo):**
+- Express.js
+- MongoDB (via Mongoose)
+- Vercel Deployment
+
+---
+
+## 📂 Project Structure
+
+
+
+ Clone the repository  
+   `git clone`
+
+2. Install dependencies  
+   `npm install`
+
+3. Create a `.env` file with Firebase credentials and API URL
+
+4. Run the project  
+   `npm run dev`
