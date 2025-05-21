@@ -26,7 +26,7 @@ const AddListing = () => {
         };
 
 
-        fetch("http://localhost:3000/roommate", {
+        fetch("https://roommate-finder-server.vercel.app/roommate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

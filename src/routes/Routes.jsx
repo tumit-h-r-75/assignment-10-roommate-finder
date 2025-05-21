@@ -19,7 +19,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 Component: Home,
-                loader: () => fetch('http://localhost:3000/roommate')
+                loader: () => fetch('https://roommate-finder-server.vercel.app/roommate')
             },
             {
                 path: "/add-listing",
@@ -32,14 +32,22 @@ const router = createBrowserRouter([
                 element: (<PrivateRoute>
                     <Details></Details>
                 </PrivateRoute>),
-                loader: ({ params }) => fetch(`http://localhost:3000/roommate/${params.id}`)
+                loader: ({ params }) => fetch(`https://roommate-finder-server.vercel.app/roommate/${params.id}`)
             },
             {
                 path: "/browse",
                 Component: BrowseListings,
-                loader:()=>fetch('http://localhost:3000/roommate')
+                loader: () => fetch('https://roommate-finder-server.vercel.app/roommate')
             },
-            { path: "/my-listings", Component: MyListings },
+            {
+                path: "/my-listings",
+                element: (<PrivateRoute>
+                    <MyListings></MyListings>
+                </PrivateRoute>),
+                loader: ({ user }) => fetch(`https://roommate-finder-server.vercel.app/roommate/user/${user?.email}`)
+
+
+            },
         ],
     },
     {

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Slider from '../components/Slider';
 import { Link, useLoaderData } from 'react-router-dom'; 
 

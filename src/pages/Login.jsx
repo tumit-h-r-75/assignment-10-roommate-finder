@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { use } from 'react';
-import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { signUser, googleSigneIn } = use(AuthContext);
@@ -23,7 +23,7 @@ const Login = () => {
             toast.success('Logged in successfully!');
             navigate(from, { replace: true });
         } catch (error) {
-            toast.error(error.message || 'Login failed');
+            toast.error(error.message);
         } finally {
             setLoading(false);
         }
