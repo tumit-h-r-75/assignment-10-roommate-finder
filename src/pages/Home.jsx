@@ -107,13 +107,13 @@ const Home = () => {
                                             {roommate.name}
                                         </h3>
                                         <p className="">
-                                            <span className="font-medium text-black">Location:</span> {roommate.location}
+                                            <span className="font-medium">Location:</span> {roommate.location}
                                         </p>
                                         <p className="">
-                                            <span className="font-medium text-black">Budget:</span> ${roommate.rent}
+                                            <span className="font-medium">Budget:</span> ${roommate.rent}
                                         </p>
                                         <p className="">
-                                            <span className="font-medium text-black">Lifestyle:</span> {roommate.lifestyle}
+                                            <span className="font-medium">Lifestyle:</span> {roommate.lifestyle}
                                         </p>
                                     </div>
 

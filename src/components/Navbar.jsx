@@ -7,6 +7,9 @@ import { AuthContext } from "../context/AuthContext";
 const Navbar = () => {
     const { user, signOutUser, setDarkMode, darkMode } = useContext(AuthContext);
     const location = useLocation();
+    if(location.pathname !== '/'){
+        setDarkMode(false)
+    }
 
     const handleLogout = () => {
         signOutUser()
