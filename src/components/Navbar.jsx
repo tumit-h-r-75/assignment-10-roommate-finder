@@ -70,8 +70,8 @@ const Navbar = () => {
         <nav className="bg-base-100 shadow-md sticky top-0 z-50">
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between h-16">
                 {/* Left: Logo */}
-                <Link to="/" className="flex items-center space-x-2">
-                    <img src={navLogo} alt="Logo" className="w-12 h-12 object-contain" />
+                <Link to="/" className="flex items-center -space-x-2">
+                    <img src={navLogo} alt="Logo" className="w-16 h-18 object-contain" />
                     <h1 className="text-2xl font-bold text-primary select-none">
                         Roommate<span className="text-secondary">Finder</span>
                     </h1>
@@ -149,7 +149,7 @@ const Navbar = () => {
                                     <img
                                         src={user.photoURL}
                                         alt={user.displayName}
-                                        className="w-8 h-8 rounded-full object-cover"
+                                        className="w-12 h-12 rounded-full object-cover"
                                     />
                                     <span className="font-semibold">{user.displayName}</span>
                                 </li>
