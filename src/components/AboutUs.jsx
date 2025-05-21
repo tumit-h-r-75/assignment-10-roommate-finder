@@ -4,7 +4,7 @@ import { Zoom, Fade, Slide } from 'react-awesome-reveal';
 
 const AboutUs = () => {
   return (
-    <section className="bg-gray-50 py-16 px-4">
+    <section className=" py-16 px-4">
       <div className="max-w-6xl mx-auto text-center">
         {/* Title */}
         <Zoom triggerOnce>
@@ -15,7 +15,7 @@ const AboutUs = () => {
 
         {/* Subtitle Typewriter */}
         <Fade delay={200} triggerOnce>
-          <h3 className="text-lg md:text-xl font-semibold text-gray-700 mb-6">
+          <h3 className="text-lg md:text-xl font-semibold mb-6">
             <Typewriter
               words={[
                 'We help you find the perfect roommate.',
@@ -33,7 +33,7 @@ const AboutUs = () => {
 
         {/* Description with Slide animation */}
         <Slide direction="up" triggerOnce>
-          <p className="max-w-3xl mx-auto text-gray-600 text-base md:text-lg leading-relaxed">
+          <p className="max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
             Our platform helps you find the right roommate based on your <span className="text-primary font-medium">lifestyle</span>, <span className="text-primary font-medium">budget</span>, and <span className="text-primary font-medium">location</span>. 
             We ensure a <span className="text-secondary font-semibold">safe</span>, <span className="text-secondary font-semibold">transparent</span>, and <span className="text-secondary font-semibold">trustworthy</span> roommate-finding experience.
           </p>

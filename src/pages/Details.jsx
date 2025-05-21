@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Typewriter } from 'react-simple-typewriter';
+import { Fade } from 'react-awesome-reveal';
 
 const Details = () => {
     const roommate = useLoaderData();
@@ -55,48 +59,69 @@ const Details = () => {
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-10">
+            {/* Typewriter Animated Title */}
+            <h2 className="text-3xl text-center font-bold text-primary mb-8">
+                <Typewriter
+                    words={[`${likeCount} People Interested to Room with`, `${roommate.userName}`]}
+                    loop={true}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={80}
+                    deleteSpeed={50}
+                    delaySpeed={1500}
+                />
+            </h2>
+
             <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
-                <h2 className="text-xl font-bold text-center py-5 bg-primary text-white">{likeCount} People Interested</h2>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                    <img
-                        src={roommate.image}
-                        alt={roommate.name}
-                        className="w-full h-full object-cover max-h-[450px]"
-                    />
+                    {/* Left: Image */}
+                    <Fade direction="left">
+                        <img
+                            src={roommate.image}
+                            alt={roommate.name}
+                            className="w-full h-full object-cover max-h-[450px]"
+                        />
+                    </Fade>
 
-                    <div className="p-6 space-y-3 flex flex-col justify-between">
-                        <div>
-                            <h2 className="text-2xl font-bold text-primary mb-1">{roommate.userName}</h2>
-                            <p className="text-gray-700"><span className="font-semibold">Location:</span> {roommate.location}</p>
-                            <p className="text-gray-700"><span className="font-semibold">Budget:</span> ${roommate.rent}</p>
-                            <p className="text-gray-700"><span className="font-semibold">Lifestyle:</span> {roommate.lifestyle}</p>
-                            <p className="text-gray-700"><span className="font-semibold">Description:</span> {roommate.description}</p>
-                            <p className="text-gray-700 flex items-center gap-2">
-                                <span className="font-semibold">Availability:</span> {availabilityBadge}
-                            </p>
-                            <p className="text-gray-700"><span className="font-semibold">Posted By:</span> {roommate.userName}</p>
-                        </div>
-
-                        <div className="mt-4 flex items-center gap-4 flex-wrap">
-                            <button
-                                onClick={handleLike}
-                                disabled={liked}
-                                className={`btn ${liked ? 'btn-success' : 'btn-outline'} px-6`}
-                            >
-                                ❤️ {liked ? 'Liked' : 'Like'}
-                            </button>
-                            <p className="font-medium text-gray-700">Total Likes: {likeCount}</p>
-                        </div>
-
-                        {showContact && (
-                            <div className="mt-3">
-                                <p className="text-lg font-semibold text-green-600 bg-green-50 px-4 py-2 rounded-xl inline-block">
-                                    📞 Contact: {roommate.contact}
+                    {/* Right: Info */}
+                    <Fade direction="right">
+                        <div className="p-6 space-y-3 flex flex-col justify-between">
+                            <div>
+                                <h2 className="text-2xl font-bold text-primary mb-1">{roommate.userName}</h2>
+                                <p className="text-gray-700"><span className="font-semibold">Location:</span> {roommate.location}</p>
+                                <p className="text-gray-700"><span className="font-semibold">Budget:</span> ${roommate.rent}</p>
+                                <p className="text-gray-700"><span className="font-semibold">Lifestyle:</span> {roommate.lifestyle}</p>
+                                <p className="text-gray-700"><span className="font-semibold">Description:</span> {roommate.description}</p>
+                                <p className="text-gray-700 flex items-center gap-2">
+                                    <span className="font-semibold">Availability:</span> {availabilityBadge}
                                 </p>
+                                <p className="text-gray-700"><span className="font-semibold">Posted By:</span> {roommate.userName}</p>
                             </div>
-                        )}
-                    </div>
+
+                            <div className="mt-4 flex items-center gap-4 flex-wrap">
+                                <button
+                                    onClick={handleLike}
+                                    disabled={liked}
+                                    className={`btn ${liked ? 'btn-success' : 'btn-outline'} px-6`}
+                                    data-tooltip-id="like-tooltip"
+                                    data-tooltip-content={liked ? "You've already liked!" : "Click to like & reveal contact"}
+                                >
+                                    ❤️ {liked ? 'Liked' : 'Like'}
+                                </button>
+
+                                <Tooltip id="like-tooltip" place="top" />
+                                <p className="font-medium text-gray-700">Total Likes: {likeCount}</p>
+                            </div>
+
+                            {showContact && (
+                                <div className="mt-3">
+                                    <p className="text-lg font-semibold text-green-600 bg-green-50 px-4 py-2 rounded-xl inline-block">
+                                        📞 Contact: {roommate.contact}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    </Fade>
                 </div>
             </div>
         </div>

@@ -1,11 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import navLogo from "../assets/navLogo.png";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser, setDarkMode, darkMode } = useContext(AuthContext);
+    const location = useLocation();
 
     const handleLogout = () => {
         signOutUser()
@@ -33,7 +34,10 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isActive
                             ? "text-primary font-semibold border-b-2 border-primary"
-                            : "hover:text-primary transition duration-300"
+                            : `hover:text-primary transition duration-300 
+                            ${darkMode ? 'text-white' : 'text-black'
+
+                            }`
                     }
                 >
                     Add to Find Roommate
@@ -45,7 +49,10 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isActive
                             ? "text-primary font-semibold border-b-2 border-primary"
-                            : "hover:text-primary transition duration-300"
+                            : `hover:text-primary transition duration-300 
+                            ${darkMode ? 'text-white' : 'text-black'
+
+                            }`
                     }
                 >
                     Browse Listing
@@ -57,7 +64,10 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         isActive
                             ? "text-primary font-semibold border-b-2 border-primary"
-                            : "hover:text-primary transition duration-300"
+                            : `hover:text-primary transition duration-300 
+                            ${darkMode ? 'text-white' : 'text-black'
+
+                            }`
                     }
                 >
                     My Listings
@@ -81,6 +91,23 @@ const Navbar = () => {
                 <ul className="hidden lg:flex space-x-8 text-base font-medium text-gray-700">
                     {navLinks}
                 </ul>
+
+                <div className="hidden lg:flex">
+                    {(location.pathname == '/') ? <>
+                        <div>
+                            <label className="toggle text-base-content">
+                                <input onChange={() => setDarkMode(!darkMode)} type="checkbox" value="dark" className="theme-controller" />
+
+                                <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>
+
+                                <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></g></svg>
+
+                            </label>
+                        </div>
+                    </> : <>
+
+                    </>}
+                </div>
 
                 {/* Right: Auth Buttons Desktop */}
                 <div className="hidden lg:flex items-center space-x-4">
@@ -135,22 +162,46 @@ const Navbar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </label>
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content menu p-4 shadow-lg bg-base-100 rounded-box w-56 mt-2 space-y-2"
-                    >
+                    <ul tabIndex={0} className="dropdown-content menu p-4 shadow-lg bg-base-100 rounded-box w-56 mt-2 space-y-2">
                         {navLinks}
-                        <li>
-                            <hr className="my-2 border-gray-300" />
-                        </li>
+
+                        {(location.pathname === '/') && (
+                            <li>
+                                <label className="toggle text-base-content">
+                                    <input
+                                        onChange={() => setDarkMode(!darkMode)}
+                                        type="checkbox"
+                                        value="dark"
+                                        className="theme-controller"
+                                    />
+                                    <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="4"></circle>
+                                            <path d="M12 2v2"></path>
+                                            <path d="M12 20v2"></path>
+                                            <path d="m4.93 4.93 1.41 1.41"></path>
+                                            <path d="m17.66 17.66 1.41 1.41"></path>
+                                            <path d="M2 12h2"></path>
+                                            <path d="M20 12h2"></path>
+                                            <path d="m6.34 17.66-1.41 1.41"></path>
+                                            <path d="m19.07 4.93-1.41 1.41"></path>
+                                        </g>
+                                    </svg>
+                                    <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                                        </g>
+                                    </svg>
+                                </label>
+                            </li>
+                        )}
+
+                        <li><hr className="my-2 border-gray-300" /></li>
+
                         {user ? (
                             <>
                                 <li className="flex items-center space-x-2">
-                                    <img
-                                        src={user.photoURL}
-                                        alt={user.displayName}
-                                        className="w-12 h-12 rounded-full object-cover"
-                                    />
+                                    <img src={user.photoURL} alt={user.displayName} className="w-16 h-14 rounded-full object-cover" />
                                     <span className="font-semibold">{user.displayName}</span>
                                 </li>
                                 <li>
@@ -165,18 +216,12 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <li>
-                                    <Link
-                                        to="/auth/login"
-                                        className="btn btn-outline w-full hover:bg-primary hover:text-white transition"
-                                    >
+                                    <Link to="/auth/login" className="btn btn-outline w-full hover:bg-primary hover:text-white transition">
                                         Login
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link
-                                        to="/auth/register"
-                                        className="btn btn-primary w-full"
-                                    >
+                                    <Link to="/auth/register" className="btn btn-primary w-full">
                                         Register
                                     </Link>
                                 </li>

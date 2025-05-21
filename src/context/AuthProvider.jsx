@@ -38,6 +38,8 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, UpdatedData);
     }
 
+    const [darkMode, setDarkMode] = useState(false);
+
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentuser) => {
@@ -60,6 +62,8 @@ const AuthProvider = ({ children }) => {
         googleSigneIn,
         updateUser,
         setUser,
+        darkMode,
+        setDarkMode,
 
     }
 

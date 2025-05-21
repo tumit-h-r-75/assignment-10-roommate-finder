@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Slider from '../components/Slider';
 import { Link, useLoaderData } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -10,9 +10,12 @@ import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import Lottie from 'lottie-react';
 import animationData from '../assets/roommate.json';
+import { AuthContext } from '../context/AuthContext';
 
 const Home = () => {
     const roommate = useLoaderData();
+        const { darkMode } = useContext(AuthContext);
+    
 
     if (!roommate || roommate.length === 0) {
         return <Loader />;
@@ -48,7 +51,7 @@ const Home = () => {
                                     delaySpeed={2000}
                                 />
                             </h2>
-                            <p className="text-gray-600 text-lg">
+                            <p className={`text-lg ${darkMode?'text-white':'text-gray-600'}`}>
                                 Your journey to a better living experience begins here.
                             </p>
                         </div>
@@ -83,7 +86,7 @@ const Home = () => {
                             triggerOnce
                         >
                             <div
-                                className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02]"
+                                className={`${darkMode?'bg-gray-700 *:text-white':'bg-white'} rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02]`}
                                 data-tooltip-id={`tooltip-${roommate._id}`}
                                 data-tooltip-content="Click to view details"
                             >
@@ -103,13 +106,13 @@ const Home = () => {
                                         <h3 className="text-xl font-bold text-primary mb-2">
                                             {roommate.name}
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="">
                                             <span className="font-medium text-black">Location:</span> {roommate.location}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="">
                                             <span className="font-medium text-black">Budget:</span> ${roommate.rent}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="">
                                             <span className="font-medium text-black">Lifestyle:</span> {roommate.lifestyle}
                                         </p>
                                     </div>
