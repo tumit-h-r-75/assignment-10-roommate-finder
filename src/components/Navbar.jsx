@@ -16,22 +16,50 @@ const Navbar = () => {
     const navLinks = (
         <>
             <li>
-                <NavLink to="/" className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary transition"}>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-semibold border-b-2 border-primary"
+                            : "hover:text-primary transition duration-300"
+                    }
+                >
                     Home
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/add-listing" className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary transition"}>
+                <NavLink
+                    to="/add-listing"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-semibold border-b-2 border-primary"
+                            : "hover:text-primary transition duration-300"
+                    }
+                >
                     Add to Find Roommate
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/browse" className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary transition"}>
+                <NavLink
+                    to="/browse"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-semibold border-b-2 border-primary"
+                            : "hover:text-primary transition duration-300"
+                    }
+                >
                     Browse Listing
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/my-listings" className={({ isActive }) => isActive ? "text-primary font-semibold" : "hover:text-primary transition"}>
+                <NavLink
+                    to="/my-listings"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-semibold border-b-2 border-primary"
+                            : "hover:text-primary transition duration-300"
+                    }
+                >
                     My Listings
                 </NavLink>
             </li>
@@ -39,71 +67,125 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar flex justify-baseline items-center bg-base-300 shadow-sm px-2 md:px-6">
-            {/* Left Logo */}
-            <div className="flex items-center gap-2">
-                <Link to="/" className="flex items-center -space-x-7">
-                    <img src={navLogo} alt="logo" className="w-30 h-24 object-contain" />
-                    <h1 className="text-xl md:text-2xl font-bold text-primary">
+        <nav className="bg-base-100 shadow-md sticky top-0 z-50">
+            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+                {/* Left: Logo */}
+                <Link to="/" className="flex items-center space-x-2">
+                    <img src={navLogo} alt="Logo" className="w-12 h-12 object-contain" />
+                    <h1 className="text-2xl font-bold text-primary select-none">
                         Roommate<span className="text-secondary">Finder</span>
                     </h1>
                 </Link>
-            </div>
 
-            {/* Center NavLinks for Desktop */}
-            <div className="hidden lg:flex flex-1 justify-center">
-                <ul className="menu menu-horizontal gap-4 text-base">{navLinks}</ul>
-            </div>
-
-            {/* Right Auth Buttons for Desktop */}
-            <div className="hidden lg:flex items-center gap-4">
-                {user ? (
-                    <div className="flex items-center gap-3">
-                        <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
-                            <img src={user.photoURL} alt="User" className="w-10 h-10 rounded-full ring-2 ring-primary" />
-                        </div>
-                        <button onClick={handleLogout} className="btn btn-outline hover:btn-primary rounded-full px-4">
-                            Logout
-                        </button>
-                    </div>
-                ) : (
-                    <>
-                        <Link to="/auth/login" className="btn btn-outline hover:btn-primary rounded-full px-4">Login</Link>
-                        <Link to="/auth/register" className="btn btn-outline hover:btn-primary rounded-full px-4">Register</Link>
-                    </>
-                )}
-            </div>
-
-            {/* Mobile Dropdown Menu */}
-            <div className="lg:hidden dropdown dropdown-end ml-auto">
-                <button tabIndex={0} className="btn btn-ghost">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[999] p-2 shadow bg-base-100 rounded-box w-60">
+                {/* Center: NavLinks Desktop */}
+                <ul className="hidden lg:flex space-x-8 text-base font-medium text-gray-700">
                     {navLinks}
-                    <div className="mt-2 border-t pt-2">
+                </ul>
+
+                {/* Right: Auth Buttons Desktop */}
+                <div className="hidden lg:flex items-center space-x-4">
+                    {user ? (
+                        <>
+                            <div className="relative group cursor-pointer">
+                                <img
+                                    src={user.photoURL}
+                                    alt={user.displayName}
+                                    className="w-10 h-10 rounded-full ring-2 ring-primary object-cover"
+                                />
+                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 bg-primary text-white text-xs rounded px-2 py-1 whitespace-nowrap pointer-events-none transition-opacity duration-300">
+                                    {user.displayName}
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className="btn btn-outline btn-sm rounded-full px-5 hover:bg-primary hover:text-white transition"
+                            >
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                to="/auth/login"
+                                className="btn btn-outline btn-sm rounded-full px-6 hover:bg-primary hover:text-white transition"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/auth/register"
+                                className="btn btn-primary btn-sm rounded-full px-6"
+                            >
+                                Register
+                            </Link>
+                        </>
+                    )}
+                </div>
+
+                {/* Mobile Menu */}
+                <div className="lg:hidden dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 text-gray-700"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                    <ul
+                        tabIndex={0}
+                        className="dropdown-content menu p-4 shadow-lg bg-base-100 rounded-box w-56 mt-2 space-y-2"
+                    >
+                        {navLinks}
+                        <li>
+                            <hr className="my-2 border-gray-300" />
+                        </li>
                         {user ? (
                             <>
-                                <div className="flex items-center gap-2 px-2">
-                                    <img src={user.photoURL} alt="User" className="w-8 h-8 rounded-full" />
+                                <li className="flex items-center space-x-2">
+                                    <img
+                                        src={user.photoURL}
+                                        alt={user.displayName}
+                                        className="w-8 h-8 rounded-full object-cover"
+                                    />
                                     <span className="font-semibold">{user.displayName}</span>
-                                </div>
-                                <button onClick={handleLogout} className="btn btn-outline hover:btn-primary w-full mt-2">
-                                    Logout
-                                </button>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="btn btn-outline w-full hover:bg-primary hover:text-white transition"
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
                             </>
                         ) : (
                             <>
-                                <Link to="/auth/login" className="btn btn-outline hover:btn-primary w-full mb-1">Login</Link>
-                                <Link to="/auth/register" className="btn btn-outline hover:btn-primary w-full">Register</Link>
+                                <li>
+                                    <Link
+                                        to="/auth/login"
+                                        className="btn btn-outline w-full hover:bg-primary hover:text-white transition"
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/auth/register"
+                                        className="btn btn-primary w-full"
+                                    >
+                                        Register
+                                    </Link>
+                                </li>
                             </>
                         )}
-                    </div>
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
     );
 };
 
