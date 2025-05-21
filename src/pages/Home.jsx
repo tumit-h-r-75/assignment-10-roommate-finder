@@ -2,6 +2,9 @@ import React from 'react';
 import Slider from '../components/Slider';
 import { Link, useLoaderData } from 'react-router-dom';
 import Loader from '../components/Loader';
+import AboutUs from '../components/AboutUs';
+import SuccessStories from '../components/SuccessStories';
+
 
 const Home = () => {
     const roommate = useLoaderData();
@@ -56,6 +59,12 @@ const Home = () => {
                         </div>
                     ))}
                 </div>
+            </section>
+            <section className='space-y-5'>
+                <AboutUs></AboutUs>
+            </section>
+            <section className='mb-5'>
+                    <SuccessStories></SuccessStories>
             </section>
         </div>
     );
