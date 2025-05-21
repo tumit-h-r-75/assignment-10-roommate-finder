@@ -11,7 +11,7 @@ const AuthLayout = () => {
             <header className=' sticky top-0 z-10'>
                 <Navbar></Navbar>
             </header>
-            <main className='max-w-7xl mx-auto min-h-fit'>
+            <main className='max-w-7xl mx-auto min-h-screen'>
                 <Outlet></Outlet>
             </main>
             <footer>

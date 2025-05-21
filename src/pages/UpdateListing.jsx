@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const UpdateListing = () => {
     const data = useLoaderData();
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
@@ -18,7 +20,7 @@ const UpdateListing = () => {
         availability: data.availability || '',
         image: data.image || '',
         userName: user?.displayName || '',
-        userEmail: user?.email || ''
+        userEmail: user?.email || '',
     });
 
     const handleUpdate = e => {
@@ -41,6 +43,7 @@ const UpdateListing = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate("/my-listings")
                 }
             })
     };
