@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router';
 import { use } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import loginMain from '../assets/login-1.json'
+import loginButton from '../assets/login-2.json'
+import Lottie from 'lottie-react';
 
 const Login = () => {
-    const { signUser, googleSigneIn } = use(AuthContext);
+    const { signUser, googleSigneIn, darkMode } = use(AuthContext);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,6 +24,7 @@ const Login = () => {
         try {
             await signUser(email, password);
             toast.success('Logged in successfully!');
+
             navigate(from, { replace: true });
         } catch (error) {
             toast.error(error.message);
@@ -43,9 +47,25 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 py-10">
-            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
+        <div className={`min-h-screen flex items-center justify-center px-4 py-10 ${darkMode === "light" ? " text-white" : " text-gray-900"
+            }`}>
+            
+
+            <div className="hidden md:block w-full md:w-1/2">
+                <Lottie animationData={loginMain} loop={true} />
+            </div>
+
+
+
+            <div className={`w-full max-w-md p-8 rounded-xl shadow-lg ${darkMode === "light" ? "bg-gray-800" : "bg-white"
+                }`}>
                 <h2 className="text-2xl font-bold text-center mb-6">Login to RoommateFinder</h2>
+
+
+                <div className='flex justify-center items-center '>
+                    <Lottie animationData={loginButton} className="w-28 h-28 " />
+                </div>
+
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
@@ -54,7 +74,10 @@ const Login = () => {
                             type="email"
                             name="email"
                             required
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${darkMode === "light"
+                                ? "bg-gray-700 text-white border-gray-600"
+                                : "bg-white text-black border-gray-300"
+                                }`}
                             placeholder="Enter your email"
                         />
                     </div>
@@ -65,7 +88,10 @@ const Login = () => {
                             type="password"
                             name="password"
                             required
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${darkMode === "dark"
+                                ? "bg-gray-700 text-white border-gray-600"
+                                : "bg-white text-black border-gray-300"
+                                }`}
                             placeholder="Enter your password"
                         />
                     </div>
@@ -79,12 +105,15 @@ const Login = () => {
                     </button>
                 </form>
 
-                <div className="my-4 text-center text-sm text-gray-500">OR</div>
+                <div className="divider">OR</div>
 
                 <button
                     onClick={handleGoogleLogin}
                     disabled={loading}
-                    className="btn w-full bg-white text-black border-[#e5e5e5]"
+                    className={`w-full flex items-center justify-center gap-2 py-2 rounded-md border transition ${darkMode === "dark"
+                        ? "bg-gray-700 text-white border-gray-500 hover:bg-gray-600"
+                        : "bg-white text-black border-gray-200 hover:bg-gray-100"
+                        }`}
                 >
                     <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g>
