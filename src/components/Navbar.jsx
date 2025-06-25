@@ -31,7 +31,7 @@ const Navbar = () => {
             <li><NavLink to="/browse" className={navLinkClass}><FaListUl className="inline mr-2" /> Browse Listing</NavLink></li>
             <li><NavLink to="/about" className={navLinkClass}><FaInfoCircle className="inline mr-2" /> About Us</NavLink></li>
             <li><NavLink to="/support" className={navLinkClass}><FaHandsHelping className="inline mr-2" /> Support</NavLink></li>
-            {user&&<li><NavLink to="/Dashboard " className={navLinkClass}><FaUserCircle className="inline mr-2" /> Dashboard</NavLink></li>}
+            {user&&<li><NavLink to="/dashboard" className={navLinkClass}><FaUserCircle className="inline mr-2" /> Dashboard</NavLink></li>}
         </>
     );
 

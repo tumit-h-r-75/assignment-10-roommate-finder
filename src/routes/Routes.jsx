@@ -15,6 +15,8 @@ import UpdateListing from "../pages/UpdateListing";
 import AboutUs from "../pages/AboutUs";
 import SupportSection from "../pages/SupportSection";
 import DashboardLayout from "../layout/DashboardLayout";
+import MyProfile from "../pages/dashBoard/MyProfile";
+import DashboardHome from "../pages/dashBoard/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -27,12 +29,6 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://roommate-finder-server.vercel.app/roommate')
             },
             {
-                path: "/add-listing",
-                element: (<PrivateRoute>
-                    <AddListing></AddListing>
-                </PrivateRoute>)
-            },
-            {
                 path: '/details/:id',
                 element: (<PrivateRoute>
                     <Details></Details>
@@ -43,12 +39,6 @@ const router = createBrowserRouter([
                 path: "/browse",
                 Component: BrowseListings,
                 loader: () => fetch('https://roommate-finder-server.vercel.app/roommate')
-            },
-            {
-                path: "/my-listings",
-                element: (<PrivateRoute>
-                    <MyListings></MyListings>
-                </PrivateRoute>),
             },
             {
                 path: "/updateList/:id",
@@ -75,12 +65,33 @@ const router = createBrowserRouter([
         Component: Error,
     },
     {
-        path:"/Dashboard ",
-        Component:DashboardLayout,
-        children:[
-            
-        ]
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+            { index: true, Component: DashboardHome },
+    {
+                path: "my-profile",
+                element: <MyProfile />,
+            },
+            {
+                path: "add-listing",
+                element: (
+                    <PrivateRoute>
+                        <AddListing />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "my-listings",
+                element: (
+                    <PrivateRoute>
+                        <MyListings />
+                    </PrivateRoute>
+                ),
+            },
+        ],
     }
+
 ]);
 
 export default router;
