@@ -29,7 +29,6 @@ const Navbar = () => {
             <li><NavLink to="/" className={navLinkClass}>Home</NavLink></li>
             <li><NavLink to="/browse" className={navLinkClass}>Browse Listing</NavLink></li>
             <li><NavLink to="/about" className={navLinkClass}>About Us</NavLink></li>
-            <li><NavLink to="/contact" className={navLinkClass}>Contact</NavLink></li>
             <li><NavLink to="/support" className={navLinkClass}>Support</NavLink></li>
         </>
     );

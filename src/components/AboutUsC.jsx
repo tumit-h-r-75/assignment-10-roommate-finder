@@ -27,7 +27,7 @@ const AboutUsC = () => {
   const { darkMode } = useContext(AuthContext); // darkMode নিলাম
 
   return (
-    <section className={`py-16 px-4 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+    <section className={`py-16 px-4 ${darkMode ? ' text-white' : 'text-gray-900'}`}>
       <div className="max-w-6xl mx-auto text-center">
 
         {/* Title */}

@@ -15,7 +15,7 @@ const BrowseListings = () => {
   }
 
   return (
-    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 ${darkMode ? ' text-white' : ' text-gray-900'}`}>
       <h2 className="text-2xl sm:text-3xl font-bold text-primary text-center">
         Browse Roommate Listings
       </h2>

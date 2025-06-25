@@ -13,6 +13,7 @@ import Error from "../pages/Error";
 import Loader from "../components/Loader";
 import UpdateListing from "../pages/UpdateListing";
 import AboutUs from "../pages/AboutUs";
+import SupportSection from "../pages/SupportSection";
 
 const router = createBrowserRouter([
     {
@@ -56,7 +57,8 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://roommate-finder-server.vercel.app/roommate/${params.id}`),
 
             },
-            { path: '/about', Component: AboutUs }
+            { path: '/about', Component: AboutUs },
+            { path: '/support', Component: SupportSection }
         ],
     },
     {
