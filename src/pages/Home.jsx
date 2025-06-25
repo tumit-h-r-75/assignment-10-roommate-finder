@@ -10,6 +10,10 @@ import Lottie from 'lottie-react';
 import animationData from '../assets/roommate.json';
 import { AuthContext } from '../context/AuthContext';
 import HeroBanner from '../components/Slider';
+import CategoriesSection from './CategoriesSection';
+import CategoriesSectionSec from './CategoriesSectionSec';
+import PromoSection from './PromoSection';
+import BlogSection from './BlogSection';
 
 const Home = () => {
     const roommate = useLoaderData();
@@ -148,6 +152,32 @@ const Home = () => {
             <section className="mb-10">
                 <Slide direction="right" triggerOnce>
                     <SuccessStories />
+                </Slide>
+            </section>
+
+
+            <section className="mb-10">
+                <Slide direction="left" triggerOnce>
+                    <CategoriesSection></CategoriesSection>
+                </Slide>
+            </section>
+
+
+            <section className="mb-10">
+                <Slide direction="right" triggerOnce>
+                    <CategoriesSectionSec></CategoriesSectionSec>
+                </Slide>
+            </section>
+
+            <section className="mb-10">
+                <Slide direction="right" triggerOnce>
+                    <PromoSection></PromoSection>
+                </Slide>
+            </section>
+
+            <section className="mb-10">
+                <Slide direction="right" triggerOnce>
+                    <BlogSection></BlogSection>
                 </Slide>
             </section>
         </div>
