@@ -22,18 +22,21 @@ const DashboardHome = () => {
       desc: "View and manage your posts",
       icon: <FaListUl className="text-3xl text-primary" />,
       bg: "from-blue-100 to-blue-50",
+      link: "/dashboard/my-listings",
     },
     {
       title: "Add Listing",
       desc: "Post a new roommate request",
       icon: <FaPlus className="text-3xl text-green-600" />,
       bg: "from-green-100 to-green-50",
+      link: "/dashboard/add-listing",
     },
     {
       title: "My Profile",
       desc: "Edit and manage your info",
       icon: <FaUser className="text-3xl text-yellow-600" />,
       bg: "from-yellow-100 to-yellow-50",
+      link: "/dashboard/my-profile",
     },
     {
       title: "Total Likes",
@@ -64,6 +67,7 @@ const DashboardHome = () => {
       desc: "Back to main page",
       icon: <FaHome className="text-3xl text-gray-600" />,
       bg: "from-gray-100 to-gray-50",
+      link: "/"
     },
   ];
 
@@ -82,21 +86,36 @@ const DashboardHome = () => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        {cards.map((card, i) => (
-          <Link
-            to={card.link}
-            key={i}
-            className={`p-5 bg-gradient-to-r ${card.bg} rounded-xl shadow hover:shadow-lg transition`}
-          >
+        {cards.map((card, i) => {
+          const CardContent = (
             <div className="flex items-center gap-4">
               {card.icon}
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">{card.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {card.title}
+                </h3>
                 <p className="text-sm text-gray-500">{card.desc}</p>
               </div>
             </div>
-          </Link>
-        ))}
+          );
+
+          return card.link ? (
+            <Link
+              to={card.link}
+              key={i}
+              className={`p-5 bg-gradient-to-r ${card.bg} rounded-xl shadow hover:shadow-lg transition`}
+            >
+              {CardContent}
+            </Link>
+          ) : (
+            <div
+              key={i}
+              className={`p-5 bg-gradient-to-r ${card.bg} rounded-xl shadow`}
+            >
+              {CardContent}
+            </div>
+          );
+        })}
       </div>
     </motion.div>
   );

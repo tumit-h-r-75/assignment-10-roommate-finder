@@ -1,11 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUser, FaPlus, FaList } from "react-icons/fa";
 
 const DashboardSidebar = () => {
   return (
     <aside className="w-64 bg-white shadow-md h-screen sticky top-0 hidden md:block">
       <div className="p-6 space-y-4">
-        <h2 className="text-xl font-bold text-primary">Dashboard</h2>
+        <Link to='/dashboard'><h2 className="text-xl mb-5 font-bold text-primary">Dashboard</h2></Link>
         <nav className="space-y-2">
           <NavLink
             to="/dashboard/my-listings"
