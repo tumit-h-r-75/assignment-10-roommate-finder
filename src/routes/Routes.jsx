@@ -14,6 +14,7 @@ import Loader from "../components/Loader";
 import UpdateListing from "../pages/UpdateListing";
 import AboutUs from "../pages/AboutUs";
 import SupportSection from "../pages/SupportSection";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const router = createBrowserRouter([
     {
@@ -72,6 +73,13 @@ const router = createBrowserRouter([
     {
         path: "/*",
         Component: Error,
+    },
+    {
+        path:"/Dashboard ",
+        Component:DashboardLayout,
+        children:[
+            
+        ]
     }
 ]);
 

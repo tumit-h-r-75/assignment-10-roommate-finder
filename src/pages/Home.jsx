@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Slider from '../components/Slider';
 import { Link, useLoaderData } from 'react-router-dom';
 import Loader from '../components/Loader';
 import SuccessStories from '../components/SuccessStories';
@@ -10,6 +9,7 @@ import 'react-tooltip/dist/react-tooltip.css';
 import Lottie from 'lottie-react';
 import animationData from '../assets/roommate.json';
 import { AuthContext } from '../context/AuthContext';
+import HeroBanner from '../components/Slider';
 
 const Home = () => {
     const roommate = useLoaderData();
@@ -27,7 +27,7 @@ const Home = () => {
         <div>
             {/* Hero Slider */}
             <section className='w-full'>
-                <Slider />
+                <HeroBanner />
             </section>
 
             {/* Hero Typewriter + Lottie */}

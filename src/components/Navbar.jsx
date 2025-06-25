@@ -3,6 +3,7 @@ import navLogo from "../assets/navLogo.png";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
+import { FaHome, FaListUl, FaInfoCircle, FaHandsHelping, FaUserCircle,FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
     const { user, signOutUser, setDarkMode, darkMode } = useContext(AuthContext);
@@ -26,10 +27,11 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <li><NavLink to="/" className={navLinkClass}>Home</NavLink></li>
-            <li><NavLink to="/browse" className={navLinkClass}>Browse Listing</NavLink></li>
-            <li><NavLink to="/about" className={navLinkClass}>About Us</NavLink></li>
-            <li><NavLink to="/support" className={navLinkClass}>Support</NavLink></li>
+            <li><NavLink to="/" className={navLinkClass}><FaHome className="inline mr-2" /> Home</NavLink></li>
+            <li><NavLink to="/browse" className={navLinkClass}><FaListUl className="inline mr-2" /> Browse Listing</NavLink></li>
+            <li><NavLink to="/about" className={navLinkClass}><FaInfoCircle className="inline mr-2" /> About Us</NavLink></li>
+            <li><NavLink to="/support" className={navLinkClass}><FaHandsHelping className="inline mr-2" /> Support</NavLink></li>
+            {user&&<li><NavLink to="/Dashboard " className={navLinkClass}><FaUserCircle className="inline mr-2" /> Dashboard</NavLink></li>}
         </>
     );
 
@@ -88,13 +90,13 @@ const Navbar = () => {
                                 onClick={handleLogout}
                                 className="btn btn-outline btn-sm rounded-full px-5 hover:bg-primary hover:text-white"
                             >
-                                Logout
+                                <FaSignOutAlt /> Logout
                             </button>
                         </>
                     ) : (
                         <>
-                            <Link to="/auth/login" className="btn btn-outline btn-sm rounded-full px-6">Login</Link>
-                            <Link to="/auth/register" className="btn btn-primary btn-sm rounded-full px-6">Register</Link>
+                            <Link to="/auth/login" className="btn btn-outline btn-sm rounded-full px-6"><FaSignInAlt /> Login</Link>
+                            <Link to="/auth/register" className="btn btn-primary btn-sm rounded-full px-6"><FaUserPlus /> Register</Link>
                         </>
                     )}
                 </div>
@@ -144,14 +146,14 @@ const Navbar = () => {
                                         onClick={handleLogout}
                                         className="btn btn-outline w-full hover:bg-primary hover:text-white"
                                     >
-                                        Logout
+                                        <FaSignOutAlt /> Logout
                                     </button>
                                 </li>
                             </>
                         ) : (
                             <>
-                                <li><Link to="/auth/login" className="btn btn-outline w-full hover:bg-primary hover:text-white">Login</Link></li>
-                                <li><Link to="/auth/register" className="btn btn-primary w-full">Register</Link></li>
+                                <li><Link to="/auth/login" className="btn btn-outline w-full hover:bg-primary hover:text-white"><FaSignInAlt /> Login</Link></li>
+                                <li><Link to="/auth/register" className="btn btn-primary w-full"><FaUserPlus /> Register</Link></li>
                             </>
                         )}
                     </ul>
