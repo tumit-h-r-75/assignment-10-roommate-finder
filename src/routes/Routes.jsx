@@ -12,6 +12,7 @@ import Details from "../pages/Details";
 import Error from "../pages/Error";
 import Loader from "../components/Loader";
 import UpdateListing from "../pages/UpdateListing";
+import AboutUs from "../pages/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -48,13 +49,14 @@ const router = createBrowserRouter([
                 </PrivateRoute>),
             },
             {
-                path:"/updateList/:id",
-                element:(<PrivateRoute>
+                path: "/updateList/:id",
+                element: (<PrivateRoute>
                     <UpdateListing></UpdateListing>
                 </PrivateRoute>),
                 loader: ({ params }) => fetch(`https://roommate-finder-server.vercel.app/roommate/${params.id}`),
 
-            }
+            },
+            { path: '/about', Component: AboutUs }
         ],
     },
     {

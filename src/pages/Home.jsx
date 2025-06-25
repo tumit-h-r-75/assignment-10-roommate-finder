@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Slider from '../components/Slider';
 import { Link, useLoaderData } from 'react-router-dom';
 import Loader from '../components/Loader';
-import AboutUs from '../components/AboutUs';
 import SuccessStories from '../components/SuccessStories';
 import { Typewriter } from 'react-simple-typewriter';
 import { Fade, Zoom, Slide } from 'react-awesome-reveal';
@@ -14,15 +13,15 @@ import { AuthContext } from '../context/AuthContext';
 
 const Home = () => {
     const roommate = useLoaderData();
-        const { darkMode } = useContext(AuthContext);
-    
+    const { darkMode } = useContext(AuthContext);
+
 
     if (!roommate || roommate.length === 0) {
         return <Loader />;
     }
 
     const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
-    const initialRoommate = availableRoommates.slice(0, 6);
+    const initialRoommate = availableRoommates.slice(0, 8);
 
     return (
         <div>
@@ -51,7 +50,7 @@ const Home = () => {
                                     delaySpeed={2000}
                                 />
                             </h2>
-                            <p className={`text-lg ${darkMode?'text-white':'text-gray-600'}`}>
+                            <p className={`text-lg ${darkMode ? 'text-white' : 'text-gray-600'}`}>
                                 Your journey to a better living experience begins here.
                             </p>
                         </div>
@@ -77,7 +76,7 @@ const Home = () => {
                     </h2>
                 </Zoom>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {initialRoommate.map((roommate, index) => (
                         <Fade
                             key={roommate._id}
@@ -86,41 +85,42 @@ const Home = () => {
                             triggerOnce
                         >
                             <div
-                                className={`${darkMode?'bg-gray-700 *:text-white':'bg-white'} rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02]`}
+                                className={`${darkMode ? 'bg-gray-800 *:text-white' : 'bg-white'} rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group`}
                                 data-tooltip-id={`tooltip-${roommate._id}`}
                                 data-tooltip-content="Click to view details"
                             >
-                                <div className="relative">
+                                {/* Image Section */}
+                                <div className="relative aspect-[4/3] overflow-hidden">
                                     <img
                                         src={roommate.image}
                                         alt={roommate.name}
-                                        className="w-full h-52 object-cover"
+                                        className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                                     />
-                                    <span className="absolute top-3 right-3 bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full shadow">
-                                        {roommate.availability}
-                                    </span>
                                 </div>
 
+                                {/* Content Section */}
                                 <div className="p-5 flex-1 flex flex-col justify-between">
                                     <div>
-                                        <h3 className="text-xl font-bold text-primary mb-2">
-                                            {roommate.name}
+                                        <h3 className="text-xl font-semibold text-primary mb-2 truncate">
+                                            {roommate.userName}
                                         </h3>
-                                        <p className="">
-                                            <span className="font-medium">Location:</span> {roommate.location}
+                                        <p className="text-sm mb-3">
+                                            <strong className="font-medium">🟢 Availability:</strong>{' '}
+                                            <span
+                                                className={`font-semibold ${roommate.availability === 'Available' ? 'text-green-600' : 'text-red-600'}`}
+                                            >
+                                                {roommate.availability}
+                                            </span>
                                         </p>
-                                        <p className="">
-                                            <span className="font-medium">Budget:</span> ${roommate.rent}
-                                        </p>
-                                        <p className="">
-                                            <span className="font-medium">Lifestyle:</span> {roommate.lifestyle}
+                                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                                            <span className="font-medium">📍 Location:</span> {roommate.location}
                                         </p>
                                     </div>
 
-                                    <div className="mt-5">
+                                    <div className="mt-6">
                                         <Link
                                             to={`/details/${roommate._id}`}
-                                            className="block text-center bg-primary text-white font-semibold py-2 rounded-xl hover:bg-primary-focus transition-all duration-300"
+                                            className="block w-full text-center bg-primary text-white font-semibold py-2 rounded-xl hover:bg-primary-focus transition-all duration-300"
                                         >
                                             See More
                                         </Link>
@@ -142,13 +142,6 @@ const Home = () => {
                         </Fade>
                     ))}
                 </div>
-            </section>
-
-            {/* About Us */}
-            <section className="space-y-5">
-                <Slide direction="left" triggerOnce>
-                    <AboutUs />
-                </Slide>
             </section>
 
             {/* Success Stories */}

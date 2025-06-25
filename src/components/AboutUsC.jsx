@@ -2,7 +2,7 @@ import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import { Zoom, Fade, Slide } from 'react-awesome-reveal';
 
-const AboutUs = () => {
+const AboutUsC = () => {
   return (
     <section className=" py-16 px-4">
       <div className="max-w-6xl mx-auto text-center">
@@ -43,4 +43,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsC;

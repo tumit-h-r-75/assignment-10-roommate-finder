@@ -99,19 +99,14 @@ const BrowseListings = () => {
                   <img
                     src={post.image}
                     alt={post.userName}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full  object-contain"
                   />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
                 <p className="text-sm text-gray-600 mb-1">
                   <strong>📍 Location:</strong> {post.location}
                 </p>
-                <p className="text-sm text-gray-600 mb-1">
-                  <strong>🏠 Room Type:</strong> {post.roomType}
-                </p>
-                <p className="text-sm text-gray-600 mb-1">
-                  <strong>💰 Rent:</strong> ${post.rent}
-                </p>
+                
                 <p className="text-sm text-gray-600 mb-4">
                   <strong>🟢 Availability:</strong>{' '}
                   <span
