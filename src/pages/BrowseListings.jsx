@@ -1,19 +1,21 @@
-import React, {  useState } from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { HiViewList, HiViewGrid } from "react-icons/hi";
 import { Fade } from "react-awesome-reveal";
+import { AuthContext } from '../context/AuthContext';  // darkMode নিতে
 
 const BrowseListings = () => {
   const allRoommate = useLoaderData();
-  const [viewMode, setViewMode] = useState('table'); // 'table' or 'card'
+  const { darkMode } = useContext(AuthContext);  // darkMode এখান থেকে নিলাম
+  const [viewMode, setViewMode] = React.useState('table'); // 'table' or 'card'
 
   if (!allRoommate || allRoommate.length === 0) {
     return <Loader />;
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
       <h2 className="text-2xl sm:text-3xl font-bold text-primary text-center">
         Browse Roommate Listings
       </h2>
@@ -29,9 +31,9 @@ const BrowseListings = () => {
       </div>
 
       {viewMode === 'table' ? (
-        <div className="overflow-x-auto shadow rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-100 text-sm text-gray-700">
+        <div className={`overflow-x-auto shadow rounded-lg border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+          <table className={`min-w-full divide-y ${darkMode ? 'divide-gray-700' : 'divide-gray-200'}`}>
+            <thead className={`${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-700'} text-sm`}>
               <tr>
                 <th className="px-4 py-3 text-left">#</th>
                 <th className="px-4 py-3 text-left">User</th>
@@ -43,11 +45,11 @@ const BrowseListings = () => {
                 <th className="px-4 py-3 text-left">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 text-sm">
+            <tbody className={`${darkMode ? 'bg-gray-900 divide-gray-700 text-gray-300' : 'bg-white divide-gray-200 text-gray-900'} text-sm`}>
               {allRoommate.map((post, index) => (
                 <tr
                   key={post._id}
-                  className="hover:bg-gray-50 transition"
+                  className={`${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-50'} transition`}
                 >
                   <td className="px-4 py-3">{index + 1}</td>
                   <td className="px-4 py-3">
@@ -69,10 +71,11 @@ const BrowseListings = () => {
                   <td className="px-4 py-3">${post.rent}</td>
                   <td className="px-4 py-3">
                     <span
-                      className={`px-2 py-1 text-xs font-semibold rounded-full ${post.availability === 'Available'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                        }`}
+                      className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                        post.availability === 'Available'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-red-100 text-red-800'
+                      }`}
                     >
                       {post.availability}
                     </span>
@@ -93,27 +96,28 @@ const BrowseListings = () => {
             {allRoommate.map((post) => (
               <div
                 key={post._id}
-                className="bg-white h-full rounded-lg shadow-md hover:shadow-lg transition p-5"
+                className={`rounded-lg shadow-md hover:shadow-lg transition p-5 ${
+                  darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+                }`}
               >
                 <div className="relative mb-4 h-44 overflow-hidden rounded-lg">
                   <img
                     src={post.image}
                     alt={post.userName}
-                    className="w-full h-full  object-contain"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
-                <p className="text-sm text-gray-600 mb-1">
+                <p className={`text-sm mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   <strong>📍 Location:</strong> {post.location}
                 </p>
-                
-                <p className="text-sm text-gray-600 mb-4">
+
+                <p className={`text-sm mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   <strong>🟢 Availability:</strong>{' '}
                   <span
-                    className={`font-semibold ${post.availability === 'Available'
-                      ? 'text-green-600'
-                      : 'text-red-600'
-                      }`}
+                    className={`font-semibold ${
+                      post.availability === 'Available' ? 'text-green-400' : 'text-red-400'
+                    }`}
                   >
                     {post.availability}
                   </span>

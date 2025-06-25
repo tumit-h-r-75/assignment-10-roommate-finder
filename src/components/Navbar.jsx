@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import navLogo from "../assets/navLogo.png";
 import { useContext } from "react";
 import { toast } from "react-toastify";
@@ -6,11 +6,11 @@ import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
     const { user, signOutUser, setDarkMode, darkMode } = useContext(AuthContext);
-    const location = useLocation();
+    // const location = useLocation();
 
-    if (location.pathname !== "/") {
-        setDarkMode(false);
-    }
+    // if (location.pathname !== "/") {
+    //     setDarkMode(false);
+    // }
 
     const handleLogout = () => {
         signOutUser()
@@ -52,7 +52,6 @@ const Navbar = () => {
 
                 {/* Dark Mode + Auth Buttons */}
                 <div className="hidden lg:flex items-center space-x-4">
-                    {location.pathname === "/" && (
                         <label className="toggle text-base-content">
                             <input onChange={() => setDarkMode(!darkMode)} type="checkbox" value="dark" className="theme-controller" />
                             <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -72,7 +71,7 @@ const Navbar = () => {
                                 </g>
                             </svg>
                         </label>
-                    )}
+                    
 
                     {user ? (
                         <>
