@@ -94,7 +94,9 @@ const SupportSection = () => {
               variants={fadeUpVariant}
               whileHover={{ scale: 1.05, boxShadow: darkMode ? "0 10px 20px rgba(59,130,246,0.5)" : "0 10px 20px rgba(59,130,246,0.3)" }}
             >
-              {icon}
+              <div className='flex justify-center items-center'>
+                {icon}
+              </div>
               <h3 className="text-xl font-semibold mb-2">{title}</h3>
               <p className="text-sm leading-relaxed">{desc}</p>
             </motion.div>
