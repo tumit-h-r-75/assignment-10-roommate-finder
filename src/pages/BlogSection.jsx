@@ -63,8 +63,8 @@ const BlogSection = () => {
             />
             <div className="p-5">
               <h3 className="text-xl font-semibold mb-2">{title}</h3>
-              <p className="text-sm mb-3 text-gray-500 dark:text-gray-400">{excerpt}</p>
-              <time className="text-xs text-gray-400 dark:text-gray-500">{new Date(date).toLocaleDateString()}</time>
+              <p className={`text-sm mb-3 ${darkMode?"text-white":"text-gray-900"}`}>{excerpt}</p>
+              <time className={`text-xs ${darkMode?"text-white":"text-gray-900"}`}>{new Date(date).toLocaleDateString()}</time>
             </div>
           </motion.article>
         ))}

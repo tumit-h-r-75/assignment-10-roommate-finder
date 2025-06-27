@@ -48,7 +48,7 @@ const CategoriesSection = () => {
           >
             <div className="mb-4">{cat.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{cat.title}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-300">{cat.desc}</p>
+            <p className={`text-sm ${darkMode?"text-white":"text-gray-900"}`}>{cat.desc}</p>
           </motion.div>
         ))}
       </div>

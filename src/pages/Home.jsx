@@ -116,7 +116,7 @@ const Home = () => {
                                                 {roommate.availability}
                                             </span>
                                         </p>
-                                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                                        <p className={`text-sm ${darkMode?"text-white":"text-gray-900"}`}>
                                             <span className="font-medium">📍 Location:</span> {roommate.location}
                                         </p>
                                     </div>
